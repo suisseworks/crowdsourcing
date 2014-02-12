@@ -1,0 +1,9 @@
+En la venta de Escoger Círculo (Registro paso 2)
+El hacer click en un círculo, mostrar el detalle del círculo en un box debajo, con la información general, como quién es el líder, los miembros, etc.
+
+
+A la hora de mostrar círculos, que existan las opciones de escoger solo aquellos círculos que:
+    sean del mismo país seleccionado [default?]
+    sean de la misma provincia seleccionada
+    solo aquellos que no tengan miembros con la categoría/especialidad selecionada [default]
+
