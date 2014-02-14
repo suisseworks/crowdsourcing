@@ -6,6 +6,8 @@
  * Time: 05:24 PM
  */
 
+//Uso
+// MyGlobals::MENSAJE_TIPO_NOTIFICACION,
 
 class MyGlobals {
 
@@ -20,6 +22,16 @@ class MyGlobals {
 
 
     const EMAIL_LOGO_PATH = "http://www.websensemble.com/networkingdays/images/logoemail.png";
+
+
+    //***ESTADOS DEL PROYECTO**//
+
+    const ESTADO_PROYECTO_BORRADOR = 1;
+    const ESTADO_PROYECTO_ENVIADO = 2;
+    const ESTADO_PROYECTO_APROBADO = 3;
+    const ESTADO_PROYECTO_RECHAZADO = 4;
+
+
 
 }
 

@@ -1,0 +1,644 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.10.0.js"></script>
+        
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="http://www.build-software.nl/css/google-code-prettify/prettify.css" rel="stylesheet">
+        
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="http://www.build-software.nl/js/google-code-prettify/prettify.js"></script>
+        <!--[if IE]>
+            <script src="excanvas.js"></script>
+        <![endif]-->
+        <script language="JavaScript" src="gauge-meter.js"></script>
+        <script>
+            $(document).ready(function()
+            {
+                prettyPrint();
+            });
+        </script>
+        <style>
+            /*PRETTYPRINT OVERRIDES*/
+            ol.linenums
+            {
+                padding-left: 10px!important;
+            }
+            ol.linenums li
+            {
+                padding-left: 10px!important;
+                color: #bebec5!important;
+                list-style-type: decimal!important;
+                background:inherit!important;
+            }
+            .prettyprint.linenums
+            {
+                -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0!important;
+                -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0!important;
+                box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0!important;
+            }
+            .prettyprint
+            {
+                padding: 8px!important;
+                background-color: #f7f7f9!important;
+                border: 1px solid #e1e1e8!important;
+            }
+            /*END PRETTYPRINT OVERRIDES*/
+        </style>
+        <style>
+            section > p,
+            section > H3
+            {
+                margin:0px;
+                padding-left: 10px;
+                padding-right:10px;
+                background-color: white;
+            }
+            section > H3
+            {
+                padding-top:10px;
+            }
+            section > p
+            {
+                padding-bottom:10px;
+            }
+            table
+            {
+               background-color: white; 
+            }
+            .row
+            {
+            margin-top:10px
+            }
+            
+        </style>
+        <script>
+            var gm1;
+            var gm3_settings;
+            $(document).ready(function()
+            {
+                gm1 = new GaugeMeter(
+                {
+                    ElementId	: "gauge1",
+                    MinValue	: 0,
+                    MaxValue	: 10,
+                    /*Value	: 8,*/
+                    Animate	: true,
+                    AnimTime	: 500,
+                    Text        : "Grade"
+                });
+                GaugeMeter(
+                {
+                    ElementId	: "gauge2",
+                    Value	: 33,
+                    Animate	: false,
+                    MinLabel	: "0 %",
+                    MaxLabel	: "100 %",
+                    Text	: "completed",
+                    GaugeColors : ['#D0D0FF','#C0C0FF','#B0B0FF','#A0A0FF','#9090FF','#8080FF','#7070FF','#6060FF','#5050FF','#4040FF'],
+                    GaugeSegments   : {
+                            BorderColor: '#0000FF',
+                            BorderWidth: 1
+                          },
+                    NeedlePivot : {
+                              BorderColor: '#0000FF',
+                              BackgroundColor: '#D0D0FF'
+                            },
+                    Panel:  { Margin:1,
+                            BorderColor: '#0000FF'},
+                    HideOuterBorder : true
+                    
+                });
+                
+                gm3_settings = 
+                {
+                    ElementId	: "gauge3",
+                    MinValue	: -100,
+                    MaxValue	: 100,
+                    Value	: 38,
+                    MinLabel	: "-100 c",
+                    MaxLabel	: "+100 c",
+                    Text        : "Temp. Celsius",
+                    GaugeColors : ['#FF0000','#00FF00'],
+                    GaugeSegments: {
+                                    BorderColor: '#383838',
+                                    BorderWidth: 2
+                                  },
+                    Panel       : {
+                                    BorderWidth:1,
+                                    BorderColor: '#000000',
+                                    BackgroundColor: '#FFFFFF',
+                                    Margin: 3
+                                  },
+                    OuterBorder : {
+                                    BorderWidth:1,
+                                    BorderColor: '#0F0F0F',
+                                    BackgroundColor: '#AEAEAE'
+                                  },
+                    NeedlePivot : {
+                                    BorderWidth:1,
+                                    BorderColor: '#0F0F0F',
+                                    BackgroundColor: '#AEAEAE'
+                                  }
+                }
+                GaugeMeter(gm3_settings);
+                
+                GaugeMeter(
+                {
+                    ElementId	: "gauge4",
+                    NoData	: true,
+                    NoDataText  : "no data",
+                    MinLabel	: "+50 %",
+                    MaxLabel	: "-50 %"
+                });
+            });
+            function setGM1()
+            {
+                var gm1_input = parseFloat(document.getElementById('gm1_val').value);
+                if(!isNaN(gm1_input))
+                    gm1.SetValue(gm1_input);
+            }
+            function reloadGM3()
+            {
+                GaugeMeter(gm3_settings);
+            }
+        </script>
+    </head>
+    <body data-spy="scroll" data-target=".navbar" style="background-image: url(http://subtlepatterns.com/patterns/noisy_grid.png); background-position: initial initial; background-repeat: initial initial;">
+        <div class="navbar navbar-fixed-top navbar-inverse">
+            <div class="navbar-inner" >
+                    <div class="container">
+                        <ul id="nav-categories" class="nav">
+                            <li class="active">
+                                <a href='#about'>gauge-meter.js</a>
+                            </li>
+                            <li>
+                                <a href='#quick'>Quick start</a>
+                            </li>
+                            <li>
+                                <a href='#constructor'>Constructor</a>
+                            </li>
+                            <li>
+                                <a href='#functions'>Functions</a>
+                            </li>
+                            <li>
+                                <a href='#examples'>Examples</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>            
+            </div>
+            <div class='container' style='margin-top:40px;'>
+                <div class='row'>
+                    <div class='span9'>
+                        <section id='about'>
+                            <h3>About gauge-meter.js</h3>
+                            <p>
+                                gauge-meter.js is a light weight, easy to use, customizable Gauge Meter rendered in a canvas tag.<br>
+                                It supports all mayor browsers, including IE7 & 8 (with use of excanvas.js, but u'll want to disable the animations).
+                            </p>
+                        </section>
+                    </div>
+                    <div class='span9'>
+                        <section id='quick'>
+                            <h3>Quick start</h3>
+                            <p>I find that in most cases, a few lines of code explains more than a bulk of documentation:</p>
+                            <div class='row'>
+                                <div class='span2'>
+                                    <div id="gauge1">8</div>
+                                    <div class="input-append">
+                                        <input id="gm1_val" class="span1" id="appendedInputButton" type="text" placeholder="0-10">
+                                        <button onclick="setGM1()" class="btn" type="button">Set</button>
+                                    </div>
+                                </div>
+                                <div class="span7">
+                                    <pre class="prettyprint linenums">
+&lt;!-- The Gauge Meter HTML element
+(you can assign an initial value by passing it as text in the div) -->
+&lt;div id="gauge1">8&lt;/div>
+
+&lt;!-- the input field & button -->
+&lt;input id="gm1_val" type="text" placeholder="0-10">
+&lt;button onclick="setGM1()" type="button">Set&lt;/button>
+
+&lt;script>
+    //creating the Gauge Meter
+    var gm1 = new GaugeMeter(
+    {
+        ElementId   : "gauge1",
+        MinValue    : 0,
+        MaxValue    : 10,
+        //you can also provide an initial value in the settings object
+        /*Value       : 8,*/
+        Text        : "Grade"
+    });
+    
+    //the function for setting a new value
+    function setGM1()
+    {
+        var gm1_input=parseFloat(document.getElementById('gm1_val').value);
+        if(!isNaN(gm1_input))
+            gm1.SetValue(gm1_input);
+    }
+&lt;/script>
+                                    </pre>
+                                </div>
+                                            
+                            </div>
+                            
+                        </section>
+                    </div>
+                    <div class='span9'>
+                        <section>
+                            <h3>Size</h3>
+                            <p>
+                                The Gauge Meter will always have the width of the containing div. If you wish to have a bigger or smaller Gauge Meter,
+                                just modify the width of the div and everything will size along accordingly.
+                            </p>
+                            <p>
+                                The height of the Gauge Meter will always be 60% of the Gauge Meters width.
+                            </p>
+                        </section>
+                    </div>
+                    <div class='span9'>
+                        <section id='constructor'>
+                            <h3>Constructor</h3>
+                            <p>
+                                When creating the Gauge Meter object, an object with settings should be passed as parameter.<br>
+                                Most of the keys of the settings parameter are optional. gauge-meter.js will have default values ready.
+                            </p>
+                            <p>
+                                In the following table you will find a list keys that can be passed to the settings parameter:
+                            <p>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Description</th>
+                                        <th>Value</th>
+                                        <th>Required</th>
+                                        <th>Default</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ElementId</td>
+                                        <td>The id of a HTML element where the canvas tag for the Gauge Meter will be created</td>
+                                        <td>string</td>
+                                        <td><i class="icon-ok"></i></td>
+                                        <td>n/a</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MinValue</td>
+                                        <td>The lowest value of the Gauge Meter</td>
+                                        <td>number</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MaxValue</td>
+                                        <td>The highest value of the Gauge Meter</td>
+                                        <td>number</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Value</td>
+                                        <td>The (current) value to where the needle of the Gauge Meter will point. This key has no default. When no value is given, the Gauge Meter will have a disabled look</td>
+                                        <td>number</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>n/a</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Text</td>
+                                        <td>The text in the middle of the Gaute Meter</td>
+                                        <td>string</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MinLabel</td>
+                                        <td>The text left of the Gauge Meter representing the lowest value. If not provided, the default will be a the lowest value returned as a string.</td>
+                                        <td>string</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>n/a</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MaxLabel</td>
+                                        <td>The text right of the Gauge Meter representing the highest value. If not provided, the default will be a the highest value returned as a string.</td>
+                                        <td>string</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>n/a</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NoDataText</td>
+                                        <td>If the Value key is not provided, the Gauge Meter will appear disabled showing the text of this key</td>
+                                        <td>string</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Animate</td>
+                                        <td>Defines if the Gauge Meter should animate or not</td>
+                                        <td>boolean</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>true</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AnimTime</td>
+                                        <td>Defines the duration of the animation in miliseconds. Note: this is based on a no easing animation. When easing is used, the animation time will take longer.</td>
+                                        <td>number</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Refreshrate</td>
+                                        <td>Defines how fast the moving needle needs to be refreshed</td>
+                                        <td>number</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>12</td>
+                                    </tr>
+                                    <tr>
+                                        <td>StartEazingAt</td>
+                                        <td>A number between 0 and 1 defining at what at what time eazing should take place. Having 0 to eaze right away and 1 to not eaze at all.</td>
+                                        <td>number</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>0.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EazeForce</td>
+                                        <td>Eaze reduced by nth of step (higher = faster stop)</td>
+                                        <td>number</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>1.02</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FontColor</td>
+                                        <td>The font color</td>
+                                        <td>color</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>rgb(78,101,112)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Font</td>
+                                        <td>The font</td>
+                                        <td>font</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>10px Arial</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GaugeColors</td>
+                                        <td>An array of colors defining the appearance of the Gauge Meter from left to right. The default is red, orange, green, green, green.</td>
+                                        <td>array of colors</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>
+                                            [<br>
+                                            "rgb(255,0,0)",<br>
+                                           "rgb(255,165,0)",<br>
+                                           "rgb(34,139,34)",<br>
+                                           "rgb(0,128,0)",<br>
+                                           "rgb(0,100,0)"<br>
+                                           ]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GaugeSegments</td>
+                                        <td>
+                                            An object with style settings for the Gauge Segments. If may contain the following two keys:
+                                            <ul>
+                                                <li>BorderColor: color</li>
+                                                <li>BorderWidth: number</li>
+                                            </ul>
+                                        </td>
+                                        <td>object</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>
+                                        {<br>
+                                          BorderColor: 'rgb(64,62,68)',<br>
+                                          BorderWidth: 2<br>
+                                        }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>OuterBorder</td>
+                                        <td>
+                                            An object with style settings for the outer border. If may contain the following keys:
+                                            <ul>
+                                                <li>BorderColor: color</li>
+                                                <li>BorderWidth: number</li>
+                                                <li>BackgroundColor: color</li>
+                                                <li>Radius: number</li>
+                                            </ul>
+                                        </td>
+                                        <td>object</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>
+                                        {<br>
+                                            BorderWidth     : 2,<br>
+                                            BorderColor     : "rgb(145,190,211)",<br>
+                                            BackgroundColor : "rgba(145,190,211,0.3)",<br>
+                                            Radius          : 10<br>
+                                        }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Panel</td>
+                                        <td>
+                                            An object with style settings for the inner panel. If may contain the following keys:
+                                            <ul>
+                                                <li>BorderColor: color</li>
+                                                <li>BackgroundColor: color</li>
+                                                <li>BorderWidth: number</li>
+                                                <li>Margin: number</li>
+                                                <li>Radius: number</li>
+                                            </ul>
+                                        </td>
+                                        <td>object</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>
+                                        {<br>
+                                            BackgroundColor : 'rgba(145,190,211,0.15)',<br>
+                                            BorderColor     : 'rgb(145,190,211)',<br>
+                                            BorderWidth     : 1,<br>
+                                            Margin          : 7,<br>
+                                            Radius          : 5<br>
+                                        }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Needle</td>
+                                        <td>
+                                            An object with style settings for the Gauge needle. If may contain the following keys:
+                                            <ul>
+                                                <li>BorderColor: color</li>
+                                                <li>BorderWidth: number</li>
+                                                <li>BackgroundColor: color</li>
+                                            </ul>
+                                        </td>
+                                        <td>object</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>
+                                        {<br>
+                                        BorderWidth: 1,<br>
+                                        BorderColor: "rgb(0,0,0)",<br>
+                                        BackgroundColor: "rgb(255,74,74)"<br>
+                                        }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>NeedlePivot</td>
+                                        <td>
+                                            An object with style settings for the Gauge needle's pivot. If may contain the following keys:
+                                            <ul>
+                                                <li>BorderColor: color</li>
+                                                <li>BorderWidth: number</li>
+                                                <li>BackgroundColor: color</li>
+                                            </ul>
+                                        </td>
+                                        <td>object</td>
+                                        <td><i class="icon-remove"></i></td>
+                                        <td>
+                                        {<br>
+                                          BorderWidth: 2,<br>
+                                          BorderColor: 'rgb(78,101,112)',<br>
+                                          BackgroundColor: 'rgb(205,224,226)'<br>
+                                        }
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                    <div class='span9'>
+                        <section id='functions'>
+                            <h3>Functions</h3>
+                            <p>
+                                Currently there only exists one function that can be run on an instantiated Gauge Meter:
+                                <div class="well well-small">
+                                    <dl>
+                                        <dt><h4>.SetValue(value)</h4></dt>
+                                        <dd>
+                                            Sets the new value for the Gauge Meter.<br>
+                                            Depending on how the Meter is initialised, this function will animate.
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <pre class="prettyprint linenums">
+//instantiating a new GaugeMeter
+var gauge_meter = new GaugeMeter({/* settings */});
+
+//setting the new value
+gauge_meter.SetValue(50);
+                                </pre>
+                            </p>
+                        </section>
+                    </div>
+                    <div class='span9'>
+                        <section id='examples'>
+                            <h3>Examples</h3>
+                            <div class='row'>
+                                <div class='span3'>
+                                    <div id="gauge2"></div>
+                                </div>
+                                <div class="span6">
+                                    <pre class="prettyprint linenums">
+&lt;div id="gauge2">&lt;/div>
+
+&lt;script>
+    //note that you don't need to assign the Gauge Meter to a var 
+    //if your not planning on setting a different value later on
+    GaugeMeter(
+    {
+        ElementId     : "gauge2",
+        Value         : 33,
+        Animate       : false,
+        MinLabel      : "0 %",
+        MaxLabel      : "100 %",
+        Text          : "completed",
+        GaugeColors   :
+        [
+            '#D0D0FF', '#C0C0FF',
+            '#B0B0FF', '#A0A0FF',
+            '#9090FF', '#8080FF',
+            '#7070FF', '#6060FF',
+            '#5050FF', '#4040FF'
+        ],
+        GaugeSegments : { BorderColor : '#0000FF', BorderWidth : 1},
+        NeedlePivot   : { BorderColor : '#0000FF', BackgroundColor : '#D0D0FF' },
+        Font          : '14px Helvetica'
+
+    });
+&lt;/script>
+                                    </pre>
+                                </div>   
+                            </div>
+                            
+                            <div class='row'>
+                                <div class="span7">
+                                    <pre class="prettyprint linenums">
+&lt;div id="gauge3">&lt;/div>
+&lt;button onclick="reloadGM3()">reload to see animation&lt;/button>
+
+&lt;script>
+    gm3_settings = 
+    {
+        ElementId	: "gauge3",
+        MinValue	: -100,
+        MaxValue	: 100,
+        Value           : 38,
+        MinLabel	: "-100 c",
+        MaxLabel	: "+100 c",
+        Text            : "Temp. Celsius",
+        GaugeColors     : ['#FF0000','#00FF00'],
+        GaugeSegments   : { BorderColor: '#383838', BorderWidth: 2 },
+        Panel           : { BorderWidth:1, BorderColor: '#000000',
+                            BackgroundColor: '#FFFFFF',Margin: 3 },
+        OuterBorder     : { BorderWidth:1, BorderColor: '#0F0F0F',
+                            BackgroundColor: '#AEAEAE' },
+        NeedlePivot     : { BorderWidth:1, BorderColor: '#0F0F0F',
+                            BackgroundColor: '#AEAEAE' }
+    }
+    GaugeMeter(gm3_settings);
+
+    function reloadGM3()
+    {
+        GaugeMeter(gm3_settings);
+    }
+&lt;/script>
+                                    </pre>
+                                </div>
+                                <div class='span2'>
+                                    <div id="gauge3"></div>
+                                    <button onclick="reloadGM3()" class="btn btn-small">reload to see animation</button>
+                                </div>            
+                            </div>
+                            <div class='row'>
+                                <div class='span2'>
+                                    <div id="gauge4"></div>
+                                </div>  
+                                <div class="span7">
+                                    <pre class="prettyprint linenums">
+&lt;div id="gauge4">&lt;/div>
+
+&lt;script>
+    GaugeMeter(
+    {
+        ElementId  : "gauge4",
+        NoData     : true,
+        NoDataText : "no data",
+        MinLabel   : "+50 %",
+        MaxLabel   : "-50 %"
+    });
+&lt;/script>
+                                    </pre>
+                                </div>         
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                
+            </div>
+            
+	</body>
+</html>

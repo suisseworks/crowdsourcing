@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
 
        $(document).ready(function(){
                $("#linkregistrarse").addClass('active');
-                $("body").addClass("fondo2");
+                $("body").addClass("fondo1");
        });
    </script>
 

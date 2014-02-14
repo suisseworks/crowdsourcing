@@ -7,6 +7,7 @@
  Tampco sirve el menú...del uusiario arriba a la derecha :(
 
 -->
+ <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 
 
   <script src="<?php echo Yii::app()->theme->baseUrl; ?>/javascripts/application.js" type="text/javascript"></script>
@@ -35,3 +36,14 @@
  <!-- JQUERY CUSTOM  -->
  <link href="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui-1.10.4.custom/css/start/jquery-ui-1.10.4.custom.css" rel="stylesheet">
  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js"></script>
+
+
+ <!-- GAUGE METER -->
+ <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/gauge-meter/gauge-meter.js" type="text/javascript"></script>
+
+ <!-- ThermoMeter  -->
+ <link href="<?php echo Yii::app()->request->baseUrl; ?>/js/thermometer/css/goal-thermometer.css" rel="stylesheet" />
+ <script>
+     var currentAmount = 567;
+ </script>
+ <script  src="<?php echo Yii::app()->request->baseUrl; ?>/js/thermometer/js/goal-thermometer.js"></script>

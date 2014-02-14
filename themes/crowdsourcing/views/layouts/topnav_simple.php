@@ -1,11 +1,8 @@
 <nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo Yii::app()->request->baseUrl; ?>/site">CrowdSourcing
-
-<!--            <img src="--><?php //echo Yii::app()->theme->baseUrl; ?><!--/images/logo.png" height="20px" />-->
-
-
+        <a class="navbar-brand" href="<?php echo Yii::app()->request->baseUrl; ?>/site">
+            <img  height="30px;"  class="element-animation" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/minilogo.png"  />
         </a>
 
 <!--        Estos son los botones que aparecen con los menús al hacerse pequeña la pantalla-->

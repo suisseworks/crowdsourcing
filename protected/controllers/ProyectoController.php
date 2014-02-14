@@ -39,7 +39,7 @@ class ProyectoController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','crear', 'editar'),
+				'actions'=>array('create','update','crear', 'editar', 'borrar', 'galeria'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -60,11 +60,55 @@ class ProyectoController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider=new CActiveDataProvider('Proyecto');
+        $condition = "idafiliado=" . Yii::app()->user->id;
+        $dataProvider=new CActiveDataProvider('Proyecto', array(
+            'criteria'=>array(
+                'condition'=>$condition,
+                'order'=>'fecha_creacion ASC',
+            ),
+            'pagination'=>array(
+                'pageSize'=>5
+            ),
+        ));
+
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));
     }
+
+
+    public function actionGaleria()
+    {
+        $condition = "estado=" . MyGlobals::ESTADO_PROYECTO_APROBADO;
+        $dataProvider=new CActiveDataProvider('Proyecto', array(
+            'criteria'=>array(
+                'condition'=>$condition,
+                'order'=>'fecha_creacion ASC',
+            ),
+            'pagination'=>array(
+                'pageSize'=>5
+            ),
+        ));
+
+        $this->render('galeria',array(
+            'dataProvider'=>$dataProvider,
+        ));
+
+    }
+
+
+    private function cleanProjectData($proyecto)
+    {
+        // REMOVES SIGNO DOLAR para evitar error a la hora de salvar
+        $proyecto->inversion_total_requerida = str_replace("$","",$proyecto->inversion_total_requerida);
+        $proyecto->inversion_total_requerida = str_replace(",","",$proyecto->inversion_total_requerida);
+        $proyecto->inversion_minima = str_replace("$","",$proyecto->inversion_minima);
+        $proyecto->inversion_minima = str_replace(",","",$proyecto->inversion_minima);
+
+       return $proyecto;
+    }
+
+
 
     /*
         CREAMOS UN NUEVO PROYECTO
@@ -79,6 +123,7 @@ class ProyectoController extends Controller
         if(isset($_POST['Proyecto']))
         {
             $proyecto->attributes=$_POST['Proyecto'];
+            $proyecto = $this->cleanProjectData($proyecto);
             if ($proyecto->validate()) {
                 $file = CUploadedFile::getInstance($proyecto,'logo');
                 if ($file != null)
@@ -93,6 +138,8 @@ class ProyectoController extends Controller
                     }
                 }
                 /// FECHA de CREACION
+                $proyecto->idafiliado = Yii::app()->user->id;
+                $proyecto->estado = MyGlobals::ESTADO_PROYECTO_BORRADOR;
                 $proyecto->fecha_creacion = new CDbExpression('NOW()');
                 if($proyecto->save())
                     $this->redirect(array('editar','id'=>$proyecto->idcs_proyecto));
@@ -119,6 +166,8 @@ class ProyectoController extends Controller
         if(isset($_POST['Proyecto']))
         {
             $model->attributes=$_POST['Proyecto'];
+
+
             if($model->save())
                 $this->redirect(array('view','id'=>$model->idcs_proyecto));
         }
@@ -161,9 +210,7 @@ class ProyectoController extends Controller
         if(isset($_POST['Proyecto']))
         {
             $proyecto->attributes=$_POST['Proyecto'];
-            // REMOVES SIGNO DOLAR para evitar error a la hora de salvar
-            $proyecto->inversion_total_requerida = str_replace("$","",$proyecto->inversion_total_requerida);
-            $proyecto->inversion_minima = str_replace("$","",$proyecto->inversion_minima);
+            $proyecto = $this->cleanProjectData($proyecto);
 
 
             if ($proyecto->validate())
@@ -225,14 +272,19 @@ class ProyectoController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+	public function actionBorrar($id)
 	{
 		$this->loadModel($id)->delete();
 
+        $this->actionIndex();
+		/*
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		*/
 	}
+
+
 
 
 
@@ -278,4 +330,22 @@ class ProyectoController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+
+
+
+    // Creamos codigo para inserar codigo youtube con iframe...con tamano 350x350
+    protected function fixYoutubeVideoEmbed($embed)
+    {
+
+    }
+
+
+
+
+
+
+
+
+
 }

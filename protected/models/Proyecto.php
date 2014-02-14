@@ -42,9 +42,9 @@ class Proyecto extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('idafiliado, idcategoriaproyecto, plazo', 'numerical', 'integerOnly'=>true),
+			array('idafiliado, idcategoriaproyecto, plazo, estado, nivel_riesgo', 'numerical', 'integerOnly'=>true),
             array('roi, inversion_total_requerida, inversion_minima', 'numerical'),
-			array('nombre, estado, nivel_riesgo, inversion_minima', 'length', 'max'=>45),
+			array('nombre, inversion_minima', 'length', 'max'=>45),
 			array('logo', 'length', 'max'=>145),
 			array('descripcion, fecha_creacion, fecha_envio, fecha_aprobacion, fecha_ultima_modificacion, video, tags, especialidades, logo', 'safe'),
 
@@ -70,6 +70,7 @@ class Proyecto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'proyecto_estado' => array(self::BELONGS_TO, 'ProyectoEstado', 'estado'),
 		);
 	}
 

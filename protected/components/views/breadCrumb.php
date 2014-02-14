@@ -15,7 +15,7 @@
             echo '<div class="breadcrumb-button" onclick="window.location.href=' . "'" . Yii::app()->request->baseUrl . $crumb[1]  . "'" . '"> <span class="breadcrumb-label"> <i class="' . $icon . '"></i> ' . $crumb[0] . '</span> <span class="breadcrumb-arrow"><span></span></span> </div>';
 
         } else {
-            echo '<div class="breadcrumb-button"> <span class="breadcrumb-label"> <i class="' . $icon  . '"></i> ' . $crumb[0] . '</span> <span class="breadcrumb-arrow"><span></span></span> </div>';
+            echo '<div style="cursor:default;" class="breadcrumb-button"> <span class="breadcrumb-label"> <i class="' . $icon  . '"></i> ' . $crumb[0] . '</span> <span class="breadcrumb-arrow"><span></span></span> </div>';
         }
         if(next($this->links)) {
             echo $this->delimiter;

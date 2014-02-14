@@ -126,6 +126,8 @@ class MyHelper extends CApplicationComponent
     }
 
 
+
+
     public function nombreMes($date)
     {
         $mes = date("m",strtotime($date));

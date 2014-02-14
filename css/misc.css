@@ -16,15 +16,52 @@ body{
 
 }
 
+
+div.centrar {
+    text-align: center;
+}
+
 /*
  LOGO PROYECTO
 */
+
+
+img.logo_proyecto_galeria2 {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    max-width: 420px;
+    max-height: 220px;
+
+    border-radius: 5px;
+}
+
+img.logo_proyecto_galeria {
+    cursor: pointer;
+    max-width: 420px;
+    max-height: 315px ;
+
+    /*border: 1px black solid ;*/
+    /*border-radius: 5px;*/
+    /*padding: 5px;*/
+    /*box-shadow: black 5px 5px 50px;*/
+
+    transition-property: width, height;
+    transition-timing-function:ease-in;
+    transition-duration: 0.3s;
+
+
+}
+
+
+
 
 img#logo_proyecto {
     max-width: 460px;
     max-height: 215px;
 
 }
+
 
 img.logo-proyecto {
 
@@ -48,6 +85,10 @@ body.fondo1 {
     background-color: white;
 }
 
+body.fondo2 {
+    background-image: url("background.jpg");
+    background-color: white;
+}
 
 
 
@@ -687,9 +728,21 @@ div#ajaxloader {
 }
 
 
+/**** displayInfo ****/
 
-/**** overwrites a application.css matthias ****/
 
 
+table.displayInfo td:nth-child(1) {
+    font-weight: bold;
+    font-size: 200%;
+    color: #333333;
+    padding-right: 15px;
+}
+
+table.displayInfo td:nth-child(2)  {
+    font-weight: bold;
+    font-size: 200%;
+    color: #c6080d;
+}
 
 

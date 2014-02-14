@@ -55,7 +55,7 @@ Yii::app()->clientScript->registerScript('ajax-prueba',
 
 
 
-            <div class="login box" style="margin-top: 20px;">
+            <div class="login box element-animation sombratransparente" style="margin-top: 20px;">
 
 
                 <div class="box-header">
@@ -99,7 +99,7 @@ Yii::app()->clientScript->registerScript('ajax-prueba',
 
 
             <!-- DETALLE CIRCULO -->
-            <div class="box" style="margin-top: 0px;">
+            <div class="box element-animation sombratransparente" style="margin-top: 0px;">
                 <div class="box-header">
                     <div class="title">Detalle</div>
                 </div>

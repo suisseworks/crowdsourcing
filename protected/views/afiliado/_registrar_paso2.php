@@ -1,7 +1,7 @@
 
 
 
-            <div class="login box" style="margin-top: 20px;">
+            <div class="login box element-animation sombratransparente" style="margin-top: 20px;">
                 <div class="box-header">
                     <span class="title"> <h3>Registro Paso 2/2</h3></span> <br/>
                 </div>

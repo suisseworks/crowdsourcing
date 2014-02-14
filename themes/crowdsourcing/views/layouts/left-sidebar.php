@@ -7,8 +7,8 @@
   <ul class="nav navbar-collapse collapse navbar-collapse-primary ">
 
 
-      <li id="sidebar-menu-inicio" > <span class="glow"></span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/dash/inicio"> <i class="icon-dashboard icon-2x"></i> <span>DASHBOARD</span> </a> </li>
-      <li id="sidebar-menu-inicio" > <span class="glow"></span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/dash/galeria"> <i class="icon-eye-open icon-2x"></i> <span>GALERÍA</span> </a> </li>
+      <li id="sidebar-menu-dashboard" > <span class="glow"></span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/dash/inicio"> <i class="icon-dashboard icon-2x"></i> <span>DASHBOARD</span> </a> </li>
+      <li id="sidebar-menu-inicio" > <span class="glow"></span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/proyecto/galeria"> <i class="icon-eye-open icon-2x"></i> <span>GALERÍA</span> </a> </li>
 
       <li id="sidebar-menu-proyectos"> <span class="glow"></span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/proyecto"> <i class="icon-lightbulb icon-2x"></i> <span>MIS PROYECTOS</span> </a> </li>
       <li id="sidebar-menu-inicio" > <span class="glow"></span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/dash/inicio"> <i class="icon-comment icon-2x"></i> <span>BLOG</span> </a> </li>

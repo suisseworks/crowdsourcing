@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 Yii::app()->clientScript->registerScript(
     'seleccionarIngresar',
     '$("#linkregistrar").addClass("active");
-     $("body").addClass("fondo2");
+     $("body").addClass("fondo1");
 
     '
 );

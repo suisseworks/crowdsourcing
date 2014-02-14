@@ -15,6 +15,11 @@ Yii::app()->clientScript->registerScript(
 ?>
 
 
+<script>
+    setActiveMenu('#sidebar-menu-dashboard');
+</script>
+
+
 
 <style>
     .tit {
